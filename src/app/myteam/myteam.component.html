@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <header>
+        
+        <div class="wrapper">
+            <div class="header-left">
+                <h1>My Team</h1>
+                <p>
+                    This is your chosen team to compete for you in the fantasy league. If you 
+                    don't have a team, create one. You can choose a goalkeeper with two defenders, midfielders and forwards.
+                </p>
+            </div>
+        
+            
+        <div class="header-right">
+
+            <p>Click to expand your selected team below!</p>
+            <button (click)="showTeam()" class="button btn-primary">Show</button>
+            <br>
+            <br>
+            <p>Click to create your own team!</p>
+            <button (click)="showCreateTeam()" class="button btn-primary">Create</button>
+        </div>
+
+        </div>
+    </header>
+
+
+    <div class="wrapper">
+        <main>
+
+
+            <div *ngIf="showingTeam">
+                <div id="cost">
+                    <h2>Team Cost: {{fullPrice}}</h2>
+                </div>
+                <div class="team">
+                    <div class="fwds" *ngFor="let p of teamPlayers">
+                        <div class="card" *ngIf="p.position == 'FWD' ">
+                            <p id="position">{{p.lastName}} <b>{{p.totalPoints}}</b></p>
+                            <p id="name">{{p.firstName}}</p>
+                            <p id="price">Price: {{p.playerPrice}} <b>{{p.position}}</b></p>
+                        </div>
+                    </div>
+                    <div class="mids" *ngFor="let p of teamPlayers">
+                        <div class="card" *ngIf="p.position == 'MID' ">
+                            <p id="position">{{p.lastName}} <b>{{p.totalPoints}}</b></p>
+                            <p id="name">{{p.firstName}}</p>
+                            <p id="price">Price: {{p.playerPrice}} <b>{{p.position}}</b></p>
+                        </div>
+                    </div>
+                    <div class="defs" *ngFor="let p of teamPlayers">
+                        <div class="card" *ngIf="p.position == 'DEF' ">
+                            <p id="position">{{p.lastName}} <b>{{p.totalPoints}}</b></p>
+                            <p id="name">{{p.firstName}}</p>
+                            <p id="price">Price: {{p.playerPrice}} <b>{{p.position}}</b></p>
+                        </div>
+                    </div>
+                    <div class="gk" *ngFor="let p of teamPlayers">
+                        <div class="card" *ngIf="p.position == 'GK' ">
+                            <p id="position">{{p.lastName}} <b>{{p.totalPoints}}</b></p>
+                            <p id="name">{{p.firstName}}</p>
+                            <p id="price">Price: {{p.playerPrice}} <b>{{p.position}}</b></p>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="main-left">
+                <div *ngIf="showingCreateTeamName">
+                    <form (submit)="formSubmitCreateTeam()" [formGroup]="createTeamForm">
+                        <fieldset>
+                            <label>Team Name:</label>
+                            <input type="text" class="form-control" formControlName="name" placeholder="Name">
+                        </fieldset>
+                        <button type="submit" class="btn btn-primary" [disabled]="createTeamForm.invalid">Create Team</button>
+                    </form>
+                </div>
+
+                <div *ngIf="showingChoosingPlayers">
+                   <label for="ply">Choose players: </label>
+                    <input [(ngModel)]="ply" name="ply" type="text" class="form-control"/>
+                    <table class="table table-striped">
+                        <thead> 
+                                <tr>
+                                    <th scope="col">First Name</th>
+                                    <th scope="col">Last Name</th>
+                                    <th scope="col">Price</th>
+                                    <th scope="col">Position</th>
+                                </tr>
+                            </thead>
+                    
+                        <tbody>
+                                <tr *ngFor="let p of allPlayers | filter : 'firstName' : 'lastName' : ply; index as i">
+                                <td>{{p.firstName}}</td>
+                                <td>{{p.lastName}}</td>
+                                <td>{{p.playerPrice}}</td>
+                                <td>{{p.position}}</td>
+                                <td><button class="button btn-primary" (click)="addPlayer(p)">Add</button></td>
+                                </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="main-right">
+                <div *ngIf="showingChoosingPlayers">
+                    <div><p><b>Budget: {{budget}}</b></p></div><br>
+                    <table class="table table-striped">
+                        <thead> 
+                                <tr>
+                                    <th scope="col">Last Name</th>
+                                    <th scope="col">Position</th>
+                                </tr>
+                            </thead>
+                    
+                        <tbody>
+                                <tr *ngFor="let p of chosenPlayers; index as i">
+                                <td>{{p.lastName}}</td>
+                                <td>{{p.position}}</td>
+                                <td><button class="button btn-danger" (click)="removePlayer(p, i)">Remove</button></td>
+                                </tr>
+                        </tbody>
+                    </table>
+
+                    <button *ngIf="chosenPlayers.length == 7" class="button btn-primary" (click)="addTeamPlayers()">Submit team</button>
+
+
+                    <!--
+                    <div class="teamC">
+                        <div class="fwds" *ngFor="let p of chosenPlayers; index as i">
+                            <div class="cardC" *ngIf="p.position == 'FWD' ">
+                                <p id="nameC">{{p.lastName}}</p>
+                                <button class="button btn-danger" (click)="removePlayer(p, i)">Remove</button>
+                            </div>
+                        </div>
+                        <div class="mids" *ngFor="let p of chosenPlayers; index as i">
+                            <div class="cardC" *ngIf="p.position == 'MID' ">
+                                <p id="nameC">{{p.lastName}}</p>
+                                <button class="button btn-danger" (click)="removePlayer(p, i)">Remove</button>
+                            </div>
+                        </div>
+                        <div class="defs" *ngFor="let p of chosenPlayers; index as i">
+                            <div class="cardC" *ngIf="p.position == 'DEF' ">
+                                <p id="nameC">{{p.lastName}}</p>
+                                <button class="button btn-danger" (click)="removePlayer(p, i)">Remove</button>
+                            </div>
+                        </div>
+                        <div class="gk" *ngFor="let p of chosenPlayers; index as i">
+                            <div class="cardC" *ngIf="p.position == 'GK' ">
+                                <p id="nameC">{{p.lastName}} <button class="button btn-danger" (click)="removePlayer(p, i)">Remove</button> </p>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
+                    <div>
+                        Chosen players:
+                        <div *ngFor="let f of chosenPlayers; index as i">
+                            {{f.lastName}} {{f.playerPrice}} <button class="button btn-danger" (click)="removePlayer(f, i)">Remove</button>
+                        </div>
+                    </div>
+                    <br>
+                    <button class="button btn-primary" (click)="addTeamPlayers()">Submit team</button>-->
+                </div>
+                
+            </div>
+
+        </main>
+    </div>
+</body>
+</html>

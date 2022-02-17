@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <header>
+        
+        <div class="wrapper">
+            <div class="header-left">
+                <h1>Player Database</h1>
+                <p>
+                    Take a look at all the players you can choose from. Search by
+                    a player's last name, position or league. Click on the player's
+                    name to get his details.
+                </p>
+            </div>
+        
+            
+        <div class="header-right">
+            <img src="../../../assets/pictures/nogometas.png">
+        </div>
+
+        </div>
+    </header>
+
+
+    <div class="wrapper">
+        <main>
+
+            <label for="search">Search for players by last name: </label>
+            <input [(ngModel)]="search" name="search" type="text" class="form-control"/>
+            
+            <label>Choose a position: </label>
+            
+            <button (click)="pos='all'" class="button btn-primary">All</button>
+            <button (click)="pos='FWD'" class="button btn-primary">Forwards</button>
+            <button (click)="pos='MID'" class="button btn-primary">Midfieldes</button>
+            <button (click)="pos='DEF'" class="button btn-primary">Defenders</button>
+            <button (click)="pos='GK'" class="button btn-primary">Goalkeepers</button>
+
+            <br>
+
+            <label>Choose a league: </label>
+            
+            <button (click)="league='all'" class="button btn-primary">All</button>
+            <button (click)="league='Premier League'" class="button btn-primary">Premier League</button>
+            <button (click)="league='Serie A'" class="button btn-primary">Serie A</button>
+            <button (click)="league='La Liga'" class="button btn-primary">La Liga</button>
+            <button (click)="league='Ligue 1'" class="button btn-primary">Ligue 1</button>
+            <button (click)="league='Bundesliga'" class="button btn-primary">Bundesliga</button>
+
+            <table class="table table-striped">
+                <thead> 
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Position</th>
+                            <th scope="col">Club</th>
+                            <th scope="col">League</th>
+                            <th scope="col">Price</th>
+                        </tr>
+                    </thead>
+            
+                <tbody>
+                        <tr *ngFor="let p of players | sort : search : pos : league; index as i">
+                        <td><a [routerLink]="[p.idPlayer]">{{p.firstName}} {{p.lastName}}</a></td>
+                        <td>{{p.position}}</td>
+                        <td>{{p.clubName}}</td>
+                        <td>{{p.leagueName}}</td>
+                        <td>{{p.playerPrice}}</td>
+                        </tr>
+                </tbody>
+            </table>
+
+        </main>
+    </div>
+
+    <div class="wrapper">
+        <footer>
+            <div>
+                <h2>SFL</h2>
+                <h3>Super Fantasy League</h3>
+                <h4>2022 (C)</h4>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

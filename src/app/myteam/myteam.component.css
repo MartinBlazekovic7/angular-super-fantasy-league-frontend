@@ -1,0 +1,168 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Russo One', sans-serif;
+}
+.wrapper{
+    width: 1000px;
+    margin: 0 auto;
+}
+
+
+.header-left{
+    clear: left;
+    background-color: #145369;
+    width: 50%;
+    height: 400px;
+    float: left;
+}
+.header-left h1{
+    color: white;
+    text-align: left;
+    width: 50%;
+    font-size: 40px;
+    margin: 0 auto;
+    padding-top: 100px;
+}
+.header-left p {
+    color: white;
+    text-align: left;
+    width: 50%;
+    margin: 0 auto;
+}
+
+
+.header-right{
+    background-color: #2596be;
+    width: 50%;
+    height: 400px;
+    float: left;
+}
+
+.header-right .btn-primary{
+    width: 300px;
+    margin: 0px 100px;
+}
+.header-right p{
+    color: white;
+    text-align: center;
+    padding-top: 60px;
+}
+
+main {
+    clear: left;
+    width: 100%;
+    height: 600px;
+}
+.main-left{
+    width: 50%;
+    height: 400px;
+    float: left;
+}
+.main-left img{
+    width: 200px;
+    margin: 0 auto;
+}
+
+
+.main-right{
+    width: 50%;
+    height: 400px;
+    float: left;
+}
+
+.btn-primary {
+    background-color: #145369;
+    border: 1px solid #145369;
+    padding: 5px;
+}
+
+.team{
+    width: 520px;
+    margin: 0 auto;
+
+}
+.teamC{
+    width: 310px;
+    margin: 0 auto;
+
+}
+.fwds, .defs, .mids{
+    float: left;
+    margin-left: 5px;
+}
+.gk{
+    float: left;
+    width: 520px;
+    margin: 0 125px;
+}
+
+.card{
+    margin-top: 50px;
+    width: 250px;
+    height: 250px;
+    border: 5px solid #145369;
+    background-color:#2596be;
+}
+.cardC{
+    margin-top: 50px;
+    width: 150px;
+    height: 150px;
+    border: 5px solid #145369;
+    background-color:#2596be;
+}
+
+
+#position, #name {
+    color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 30px;
+}
+
+#name{
+    font-size: 20px;
+}
+
+#position b, #price b{
+    font-size: 32px;
+    float: right;
+    color: white;
+}
+#price{
+    margin-top: 100px;
+    color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 20px;
+}
+
+#cost{
+    clear: both;
+}
+#cost h2 {
+    color:#145369;
+}
+
+#nameC{
+    color: white;
+    font-size: 20px;
+}
+
+#positionC .btn-danger{
+    color: white;
+    font-size: 20px;
+    margin-top: 100px;
+}
+#positionC p{
+    float: right;
+}
+
+.form-control, .table-striped{
+    width: 400px;
+}
+
+.main-right .table-striped{
+    float: right;
+}
+

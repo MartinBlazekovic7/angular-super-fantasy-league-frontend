@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <header>
+        
+        <div class="wrapper">
+            <div class="header-left">
+                <h1>{{player[0].lastName}}</h1>
+                <p>
+                    {{player[0].firstName}}
+                </p>
+            </div>
+        
+            
+        <div class="header-right">
+            <div *ngIf="isGk()">
+                <table class="table">
+                    <thead> 
+                            <tr>
+                                <th scope="col">Position</th>
+                                <th scope="col">Club</th>
+                                <th scope="col">League</th>
+                            </tr>
+                        </thead>
+                
+                    <tbody>
+                            <tr>
+                            <td>{{player[0].position}}</td>
+                            <td>{{player[0].clubName}}</td>
+                            <td>{{player[0].leagueName}}</td>
+                            </tr>
+                    </tbody>
+                </table>
+                <br>
+                <table class="table">
+                    <thead> 
+                            <tr>
+                                <th scope="col">Clean sheets</th>
+                                <th scope="col">Average rating</th>
+                            </tr>
+                        </thead>
+                
+                    <tbody>
+                            <tr>
+                            <td>{{player[0].cleanSheets}}</td>
+                            <td>{{player[0].avg_rating}}</td>
+                            </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div *ngIf="!isGk()">
+                <table class="table">
+                    <thead> 
+                            <tr>
+                                <th scope="col">Position</th>
+                                <th scope="col">Club</th>
+                                <th scope="col">League</th>
+                            </tr>
+                        </thead>
+                
+                    <tbody>
+                            <tr>
+                            <td>{{player[0].position}}</td>
+                            <td>{{player[0].clubName}}</td>
+                            <td>{{player[0].leagueName}}</td>
+                            </tr>
+                    </tbody>
+                </table>
+                <br>
+                <table class="table">
+                    <thead> 
+                            <tr>
+                                <th scope="col">Goals</th>
+                                <th scope="col">Assists</th>
+                                <th scope="col">Average rating</th>
+                            </tr>
+                        </thead>
+                
+                    <tbody>
+                            <tr>
+                            <td>{{player[0].goals}}</td>
+                            <td>{{player[0].assists}}</td>
+                            <td>{{player[0].avg_rating}}</td>
+                            </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+        </div>
+
+        </div>
+    </header>
+
+
+    <div class="wrapper">
+        <main>
+            <button class="button btn-primary" (click)="back()">Back</button>
+        </main>
+    </div>
+</body>
+</html>

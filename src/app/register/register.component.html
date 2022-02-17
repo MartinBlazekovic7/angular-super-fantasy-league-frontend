@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <header>
+        
+        <div class="wrapper">
+            <div class="header-left">
+                <h1>Register</h1>
+                <p>
+                    Register to become a member of the family and
+                    to compete with your friends in the fantasy 
+                    league.
+                </p>
+            </div>
+        
+            
+        <div class="header-right">
+            <img src="../../assets/pictures/login.png">
+        </div>
+        
+        </div>
+    </header>
+
+    <div class="wrapper">
+        <main>
+            <form (submit)="onSubmit()" [formGroup]="registerForm">
+                <fieldset>
+                    <label>Username:</label>
+                    <input type="text" class="form-control" formControlName="username" placeholder="Username">
+                    <p>(Minimum 4 characters)</p>
+                </fieldset>
+                <fieldset>
+                    <label>Password:</label>
+                    <input type="password" class="form-control" formControlName="password" placeholder="Password">
+                </fieldset>
+                <fieldset>
+                    <label>Repeat Password:</label>
+                    <input type="password" class="form-control" formControlName="password2" placeholder="Repeat Password">
+                </fieldset>
+                <fieldset>
+                    <label>Name:</label>
+                    <input type="text" class="form-control" formControlName="name" placeholder="Name">
+                </fieldset>
+                <fieldset>
+                    <label>Email:</label>
+                    <input type="email" class="form-control" formControlName="email" placeholder="Email">
+                    <p>(Must contain @ character)</p>
+                </fieldset>
+                <button type="submit" class="btn btn-primary" [disabled]="registerForm.invalid">Register</button>
+            </form>
+        </main>
+    </div>
+
+    <div class="wrapper">
+        <footer>
+
+        </footer>
+    </div>
+</body>
+</html>

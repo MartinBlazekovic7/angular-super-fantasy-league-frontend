@@ -1,0 +1,24 @@
+<div class="wrapper">
+<nav>
+    <div class="nav-left">
+        <ul>
+            <li><a [routerLink]="['']">Home</a></li>
+            <li><a [routerLink]="['myteam']">My Team</a></li>
+            <li><a [routerLink]="['leagues']">Leagues</a></li>
+            <li><a [routerLink]="['player']">Player Database</a></li>
+        </ul>
+    </div>
+    <div class="nav-right">
+        <ul>
+            <li  *ngIf="authenticated && userLogged.role == 2"><a [routerLink]="['administration']">Administration</a></li>
+            <li  *ngIf="authenticated && userLogged.role == 1">{{userLogged.username}}</li>
+            <li  *ngIf="authenticated"><a (click)="logout()">Logout</a></li>
+
+            <li *ngIf="!authenticated"><a [routerLink]="['login']">Login</a></li>
+            <li  *ngIf="!authenticated"><a [routerLink]="['register']">Register</a></li>
+        </ul>
+    </div>
+    
+</nav>
+
+</div>

@@ -1,0 +1,111 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Russo One', sans-serif;
+}
+.wrapper{
+    width: 1000px;
+    margin: 0 auto;
+}
+
+
+.header-left{
+    clear: left;
+    background-color: #145369;
+    width: 50%;
+    height: 400px;
+    float: left;
+    
+}
+.header-left h1{
+    color: white;
+    text-align: left;
+    width: 50%;
+    font-size: 40px;
+    margin: 0 auto;
+    padding-top: 30px;
+}
+.header-left p {
+    color: white;
+    text-align: left;
+    width: 50%;
+    margin: 0 auto;
+}
+
+
+.header-right{
+    background-color: #2596be;
+    width: 50%;
+    height: 400px;
+    float: left;
+}
+img {
+    width: 300px;
+    margin: 0 100px;
+}
+
+main {
+    clear: left;
+    width: 100%;
+    height: 600px;
+}
+.main-left{
+    width: 50%;
+    height: 400px;
+    float: left;
+}
+.main-left img{
+    width: 200px;
+    margin: 0 auto;
+}
+
+
+.main-right{
+    padding-top: 15%;
+    width: 50%;
+    height: 400px;
+    float: left;
+}
+.main-right h4{
+    color: #2596be;
+    margin-left: 20%;
+}
+.main-right h2{
+    color: #2596be;
+    font-size: 30px;
+    margin-left: 20%;
+}
+.main-right p{
+    margin: 0 auto;
+    padding-top: 20px;
+    text-align: left;
+    color: gray;
+    margin-left: 20%;
+}
+.main-right button{
+    padding: 20px;
+    width: 100px;
+    margin: 0 auto;
+    background-color: #2596be;
+    border: 1px solid #2596be;
+    margin-left: 20%;
+}
+.main-right button:hover{
+    padding: 20px;
+    width: 100px;
+    background-color: #145369;
+}
+
+
+
+
+footer {
+    width: 100%;
+    height: 200px;
+    background-color: #145369;
+}
+
+
+@media only screen and (max-width: 1000px) {
+
+}

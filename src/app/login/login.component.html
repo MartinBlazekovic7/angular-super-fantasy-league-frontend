@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <header>
+        
+        <div class="wrapper">
+            <div class="header-left">
+                <h1>Login</h1>
+                <p>
+                    Login to continue playing our game.
+                </p>
+            </div>
+        
+            
+        <div class="header-right">
+            <img src="../../assets/pictures/login.png">
+        </div>
+
+        </div>
+    </header>
+
+
+    <div class="wrapper">
+        <main>
+            <form class="signin-form" (submit)="onLogin()" [formGroup]="signinForm">
+                <fieldset>
+                    <label>Username:</label>
+                    <input type="text" class="form-control" formControlName="username" placeholder="Username">
+                </fieldset>
+                <fieldset>
+                    <label>Password:</label>
+                    <input type="password" class="form-control" formControlName="password" placeholder="Password">
+                </fieldset>
+                <button type="submit" class="btn btn-primary" [disabled]="signinForm.invalid">Login</button>
+            </form>
+        </main>
+    </div>
+
+    <div class="wrapper">
+        <footer>
+
+        </footer>
+    </div>
+</body>
+</html>

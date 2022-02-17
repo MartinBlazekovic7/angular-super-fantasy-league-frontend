@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <header>
+        
+        <div class="wrapper">
+            <div class="header-left">
+                <h1>Administration
+                </h1>
+                <p>
+                    Read all data on users, teams, user created leagues, clubs and leagues.<br>
+                    Create, read, update or delete the football players used in the game. Players
+                    have to be from the already implemented leagues and their respective clubs.
+                </p>
+            </div>
+        
+            
+        <div class="header-right">
+            <button (click)="getUsers()" class="button btn-primary">Users</button>
+            <br>
+            <br>
+            <button (click)="getTeams()" class="button btn-primary">Teams</button>
+            <br>
+            <br>
+            <button (click)="getFleagues()" class="button btn-primary">Fantasy Leagues</button>
+            <br>
+            <br>
+            <button (click)="getPlayers()" class="button btn-primary">Players</button>
+            <br>
+            <br>
+            <button (click)="getClubs()" class="button btn-primary">Clubs</button>
+            <br>
+            <br>
+            <button (click)="getRleagues()" class="button btn-primary">Leagues</button>
+        </div>
+
+        </div>
+    </header>
+
+
+    <div class="wrapper">
+        <main>
+            <div *ngIf="showingUsers">
+                <table class="table table-striped">
+                    <thead> 
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Username</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Role</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                            <tr *ngFor="let u of users">
+                            <td>{{u.idUser}}</td>
+                            <td>{{u.name}}</td>
+                            <td>{{u.username}}</td>
+                            <td>{{u.email}}</td>
+                            <td>{{u.role}}</td>
+                            </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div *ngIf="showingTeams">
+                <table class="table table-striped">
+                    <thead> 
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Points</th>
+                            <th scope="col">User Id</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                            <tr *ngFor="let t of teams">
+                            <td>{{t.idTeam}}</td>
+                            <td>{{t.name}}</td>
+                            <td>{{t.points}}</td>
+                            <td>{{t.userId}}</td>
+                            </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div *ngIf="showingFleagues">
+                <table class="table table-striped">
+                    <thead> 
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Code</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                            <tr *ngFor="let l of fleagues">
+                            <td>{{l.idFl}}</td>
+                            <td>{{l.name}}</td>
+                            <td>{{l.code}}</td>
+                            </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div *ngIf="showingClubs">
+                <table class="table table-striped">
+                    <thead> 
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">League ID</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                            <tr *ngFor="let c of clubs">
+                            <td>{{c.idClub}}</td>
+                            <td>{{c.name}}</td>
+                            <td>{{c.LeagueId}}</td>
+                            </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div *ngIf="showingRleagues">
+                <table class="table table-striped">
+                    <thead> 
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Country</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                            <tr *ngFor="let l of rleagues">
+                            <td>{{l.idRealLeague}}</td>
+                            <td>{{l.name}}</td>
+                            <td>{{l.country}}</td>
+                            </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div *ngIf="showingPlayers">
+                <button class="button btn-primary" (click)="showingAddPlayer=!showingAddPlayer">Add player</button>
+
+                <div *ngIf="showingAddPlayer">
+                    <form (submit)="onSubmit()" [formGroup]="addForm">
+                        <fieldset>
+                            <label>First Name:</label>
+                            <input type="text" class="form-control" formControlName="firstName" placeholder="First Name">
+                        </fieldset>
+                        <fieldset>
+                            <label>Last Name:</label>
+                            <input type="text" class="form-control" formControlName="lastName" placeholder="Last Name">
+                        </fieldset>
+                        <fieldset>
+                            <label>Club Id:</label>
+                            <input type="number" class="form-control" formControlName="clubId" placeholder="Club ID">
+                        </fieldset>
+                        <fieldset>
+                            <label>Player Price:</label>
+                            <input type="number" class="form-control" formControlName="playerPrice" placeholder="Price">
+                        </fieldset>
+                        <fieldset>
+                            <label>Position:</label>
+                            <input type="text" class="form-control" formControlName="position" placeholder="Position">
+                        </fieldset>
+                        
+                        <button type="submit" class="btn btn-primary" [disabled]="addForm.invalid">Add</button>
+                    </form>
+                </div>
+
+                <div *ngIf="showingEditPlayer">
+                    <form (submit)="onSubmitEdit()" [formGroup]="editForm">
+                        <fieldset>
+                            <label>First Name:</label>
+                            <input type="text" class="form-control" formControlName="firstName" readonly>
+                        </fieldset>
+                        <fieldset>
+                            <label>Last Name:</label>
+                            <input type="text" class="form-control" formControlName="lastName" readonly>
+                        </fieldset>
+                        <fieldset>
+                            <label>Club Id:</label>
+                            <input type="number" class="form-control" formControlName="clubId" placeholder="Club ID">
+                        </fieldset>
+                        <fieldset>
+                            <label>Player Price:</label>
+                            <input type="number" class="form-control" formControlName="playerPrice" placeholder="Price">
+                        </fieldset>
+                        <fieldset>
+                            <label>Position:</label>
+                            <input type="text" class="form-control" formControlName="position" placeholder="Position">
+                        </fieldset>
+                        
+                        <button type="submit" class="btn btn-warning" [disabled]="editForm.invalid">Edit</button>
+                    </form>
+                </div>
+
+
+                <table class="table table-striped">
+                    <thead> 
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">First Name</th>
+                                <th scope="col">Last Name</th>
+                                <th scope="col">Club Id</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Position</th>
+                                <th scope="col">Edit Player</th>
+                                <th scope="col">Delete Player</th>
+                            </tr>
+                        </thead>
+                
+                    <tbody>
+                            <tr *ngFor="let p of players">
+                            <td>{{p.idPlayer}}</td>
+                            <td>{{p.firstName}}</td> 
+                            <td>{{p.lastName}}</td>
+                            <td>{{p.clubId}}</td>
+                            <td>{{p.playerPrice}}</td>
+                            <td>{{p.position}}</td>
+                            <td><button class="button btn-warning" (click)="edit(p)">Edit</button></td>
+                            <td><button class="button btn-danger" (click)="delete(p.idPlayer)">Delete</button></td>
+                            </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <div class="wrapper">
+        <footer>
+
+        </footer>
+    </div>
+</body>
+</html>
